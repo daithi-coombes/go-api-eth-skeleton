@@ -1,5 +1,7 @@
 Skeleton for creating API's on Ethereum based projects in golang
 
 Requirements:
- - TDD
- - Simulated Backend
+ [x] TDD
+ [x] Simulated Backend
+ [ ] Http Client
+ [ ] Websocket Client
