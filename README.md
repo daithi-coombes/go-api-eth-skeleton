@@ -7,7 +7,7 @@ make test
 Thats it.
 
 Requirements:
- [x] TDD
- [x] Simulated Backend
- [ ] Http Client
- [ ] Websocket Client
+ - [x] TDD
+ - [x] Simulated Backend
+ - [ ] Http Client
+ - [ ] Websocket Client
