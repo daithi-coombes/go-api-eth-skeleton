@@ -24,7 +24,7 @@ func TestGetClient(t *testing.T) {
 	}
 
 	config := Config{addr, 9000000}
-	underTest, err := GetClient(config)
+	underTest, err := GetSimulatedBackend(config)
 	if err != nil {
 		t.Error(err)
 	}

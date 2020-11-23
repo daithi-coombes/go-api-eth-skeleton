@@ -12,7 +12,7 @@ type Config struct {
 	GasLimit uint64
 }
 
-func GetClient(c Config) (*backends.SimulatedBackend, error) {
+func GetSimulatedBackend(c Config) (*backends.SimulatedBackend, error) {
 	var backend *backends.SimulatedBackend
 	alloc := core.GenesisAlloc(c.Accounts)
 	backend = backends.NewSimulatedBackend(alloc, c.GasLimit)
