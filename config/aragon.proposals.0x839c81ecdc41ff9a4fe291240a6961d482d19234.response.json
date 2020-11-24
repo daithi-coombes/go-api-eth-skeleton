@@ -1,0 +1,66 @@
+{
+    "data": {
+        "proposals": [
+            {
+                "__typename": "Proposal",
+                "appAddress": "0x839c81ecdc41ff9a4fe291240a6961d482d19234",
+                "beneficiary": "0x0000000000000000000000000000000000000000",
+                "creator": "0x0000000000000000000000000000000000000000",
+                "id": "appAddress:0x839c81ecdc41ff9a4fe291240a6961d482d19234-proposalId:0x1",
+                "link": "",
+                "name": "Abstain proposal",
+                "number": "1",
+                "requestedAmount": "0",
+                "stakes": [
+                    {
+                        "__typename": "Stake",
+                        "amount": "111000000000000000000",
+                        "entity": "0x6d781744b0a92048b4e528067984406e5780adba"
+                    },
+                    {
+                        "__typename": "Stake",
+                        "amount": "1592160622740193396720",
+                        "entity": "0xaa79b87dc8b046a5e4f7d03f1562d7fe5bf98737"
+                    },
+                    {
+                        "__typename": "Stake",
+                        "amount": "1722489663000000000000",
+                        "entity": "0xdc2adfa800a1ffa16078ef8c1f251d50dcda1065"
+                    }
+                ],
+                "status": "Active",
+                "totalTokensStaked": "3425650285740193396720"
+            },
+            {
+                "__typename": "Proposal",
+                "appAddress": "0x839c81ecdc41ff9a4fe291240a6961d482d19234",
+                "beneficiary": "0x8110d1d04ac316fdcace8f24fd60c86b810ab15a",
+                "creator": "0xe73a198e7c07c418d7dcfd42f5e953074abbd125",
+                "id": "appAddress:0x839c81ecdc41ff9a4fe291240a6961d482d19234-proposalId:0x2",
+                "link": "https://forum.tecommons.org/t/translate-to-spanish-the-onboarding-and-resources-guide-doc/51/3",
+                "name": "test",
+                "number": "2",
+                "requestedAmount": "100000000000",
+                "stakes": [
+                    {
+                        "__typename": "Stake",
+                        "amount": "20000000000000000000",
+                        "entity": "0x24597c5c68687e816ffc0c69e064cb70bb62a9cd"
+                    },
+                    {
+                        "__typename": "Stake",
+                        "amount": "171387559000000000000",
+                        "entity": "0x6d781744b0a92048b4e528067984406e5780adba"
+                    },
+                    {
+                        "__typename": "Stake",
+                        "amount": "1000000000000000000",
+                        "entity": "0xe73a198e7c07c418d7dcfd42f5e953074abbd125"
+                    }
+                ],
+                "status": "Active",
+                "totalTokensStaked": "192387559000000000000"
+            }
+        ]
+    }
+}

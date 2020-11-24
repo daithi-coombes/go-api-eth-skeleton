@@ -1,0 +1,9 @@
+{
+  "query": "query Organization($orgAddress: String!, $appFilter: App_filter!, $first: Int) { organization(id: $orgAddress) { apps(where: $appFilter, first: $first) { ...App_app __typename } __typename }}fragment App_app on App { address appId isForwarder isUpgradeable repoName implementation { address __typename } organization { address __typename } version { ...Version_version __typename } repo { ...Repo_repo __typename } roles { ...Role_role __typename }}fragment Repo_repo on Repo { address name node registry { address __typename } lastVersion { ...Version_version __typename } versions { ...Version_version __typename }}fragment Version_version on Version { semanticVersion codeAddress contentUri artifact manifest}fragment Role_role on Role { roleHash manager appAddress grantees { ...Permission_permission __typename }}fragment Permission_permission on Permission { appAddress allowed granteeAddress roleHash params { argumentId operationType argumentValue __typename }}",
+  "operationName": "Organization",
+  "variables": {
+  "appFilter": {},
+  "orgAddress": "0xd0817aa0f770d024f42f0222dba37536a05118dc"
+  }
+}
+
