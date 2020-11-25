@@ -25,8 +25,9 @@ func NewDAO(protocol string, organisation common.Address, endpoint string) (DAO,
 		log.Fatal(err)
 	}
 
-	contractAddr := common.HexToAddress("0x839c81ecdc41ff9a4fe291240a6961d482d19234")
-	instance, err = NewConvictionBeta(contractAddr, client)
+	// TODO: as you can see this is still conceptual, don't hard code. Get address from Aragon registry.
+	// contractAddr := common.HexToAddress("0x839c81ecdc41ff9a4fe291240a6961d482d19234")
+	instance, err = NewConvictionBeta(organisation, client)
 	if err != nil {
 		return instance, err
 	}

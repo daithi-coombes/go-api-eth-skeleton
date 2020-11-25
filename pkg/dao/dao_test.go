@@ -32,7 +32,7 @@ func TestTotalProposals(t *testing.T) {
 }
 
 // Uncomment and run to get the full organisation details.
-// @TODO get these details from the aragon/organisation registry
+// @TODO get these details from the aragon/organisation Registry contract
 func TestGetOrganisationGraph(t *testing.T) {
 
 	// type requestPayload struct {
