@@ -1,49 +1,33 @@
 package dao
 
 import (
-	"log"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/daithi-coombes/go-api-eth-skeleton/pkg/dao/TECGardens"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/ethclient"
 )
 
 // The DAO interface
 type DAO interface {
-	TotalProposals() (*big.Int, error)
+	TotalProposals() (*big.Int, error)           // total number of proposals
+	GetOrganization() (interface{}, error)       // struct with organization details. Values will be interpolated with related template as message downstream
+	GetProposal(uid string) (interface{}, error) // get details for a single proposal. Values will be interpolated with related template as message downstream
+	GetProposals(limit int) (interface{}, error) // details for all proposals.
 }
 
-// NewDAO Factory method for getting a doa instance for a specific protocol. Eg protocol=aragon
+// NewDAO Factory method for getting a doa instance for a specific protocol. Eg protocol=aragon | TECGardens
 // TODO: finish this
 func NewDAO(protocol string, organisation common.Address, endpoint string) (DAO, error) {
 
 	var instance DAO
 
-	client, err := ethclient.Dial(endpoint)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// TODO: as you can see this is still conceptual, don't hard code. Get address from Aragon registry.
-	// contractAddr := common.HexToAddress("0x839c81ecdc41ff9a4fe291240a6961d482d19234")
-	instance, err = NewConvictionBeta(organisation, client)
-	if err != nil {
-		return instance, err
+	switch protocol {
+	case "TECGardens":
+		instance, err := TECGardens.NewTECGardens(organisation, endpoint)
+		if err != nil {
+			return instance, err
+		}
 	}
 
 	return instance, nil
-}
-
-// TotalProposals Get total proposals for an Aragon organisation
-// @uses ConvictionBeta
-func (d ConvictionBeta) TotalProposals() (*big.Int, error) {
-	var total *big.Int
-
-	total, err := d.ProposalCounter(&bind.CallOpts{})
-	if err != nil {
-		return total, err
-	}
-
-	return total, nil
 }
