@@ -5,6 +5,7 @@ package dao
 
 import (
 	"math/big"
+	"reflect"
 	"testing"
 
 	"github.com/daithi-coombes/go-api-eth-skeleton/pkg/dao/TECGardens"
@@ -25,18 +26,51 @@ func TestTotalProposals(t *testing.T) {
 }
 
 func TestGetProposals(t *testing.T) {
+
 	underTest, err := helperGetDAO()
+	if err != nil {
+		t.Error(err)
+	}
+
+	proposals, err := underTest.GetProposals(100)
+	if err != nil {
+		t.Error(err)
+	}
+	actual := reflect.ValueOf(proposals)
+
+	assert.Equal(t, 3, actual.Len())
+}
+
+func TestGetProposal(t *testing.T) {
+
+	underTest, err := helperGetDAO()
+	if err != nil {
+		t.Error(err)
+	}
+
+	proposal, err := underTest.GetProposal("2")
+	if err != nil {
+		t.Error(err)
+	}
+	actual := reflect.ValueOf(proposal)
+
+	assert.Equal(t, 1, actual.Len())
 }
 
 func TestGetOrganization(t *testing.T) {
-	// underTest, err := helperGetDAO()
-	// actual, err := underTest.GetOrganization()
-	// if err != nil {
-	// 	t.Error(err)
-	// }
+	underTest, err := helperGetDAO()
+	if err != nil {
+		t.Error(err)
+	}
 
-	// expected := big.NewInt(4)
-	// assert.Equal(t, expected, actual)
+	org, err := underTest.GetOrganization()
+	if err != nil {
+		t.Error(err)
+	}
+	response := org.(TECGardens.GraphQLResponse)
+	actualApps := reflect.ValueOf(response.Data.Organization.Apps)
+
+	assert.Equal(t, 13, actualApps.Len())
 }
 
 func helperGetDAO() (DAO, error) {
