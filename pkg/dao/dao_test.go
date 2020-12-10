@@ -16,13 +16,23 @@ import (
 func TestTotalProposals(t *testing.T) {
 
 	underTest, err := helperGetDAO()
-	actual, err := underTest.TotalProposals()
+	actual1, err := underTest.TotalProposals()
 	if err != nil {
 		t.Error(err)
 	}
 
-	expected := big.NewInt(4)
-	assert.Equal(t, expected, actual)
+	expected1 := big.NewInt(4)
+	assert.Equal(t, expected1, actual1)
+
+	type Data struct{ Total *big.Int }
+	data := Data{big.NewInt(4)}
+	actual2, err := underTest.ParseTemplate("TECGardens/total", data)
+	if err != nil {
+		t.Error(err)
+	}
+	expected2 := "There are 4 proposals"
+
+	assert.Equal(t, expected2, actual2)
 }
 
 func TestGetProposals(t *testing.T) {
@@ -36,9 +46,18 @@ func TestGetProposals(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	actual := reflect.ValueOf(proposals)
+	actual1 := reflect.ValueOf(proposals)
 
-	assert.Equal(t, 3, actual.Len())
+	expected := 3
+	assert.Equal(t, expected, actual1.Len())
+
+	actual2, err := underTest.ParseTemplate("TECGardens/proposals", proposals)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expected2 := "Proposals:\n\n\n - Abstain proposal\n\n - test\n\n - Donate to the Commons Stack\n"
+	assert.Equal(t, expected2, actual2)
 }
 
 func TestGetProposal(t *testing.T) {
@@ -54,7 +73,16 @@ func TestGetProposal(t *testing.T) {
 	}
 	actual := reflect.ValueOf(proposal)
 
-	assert.Equal(t, 1, actual.Len())
+	expected := 1
+	assert.Equal(t, expected, actual.Len())
+
+	actual2, err := underTest.ParseTemplate("TECGardens/proposal", proposal)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expected2 := "\n    test\n\n    Requesting:\n        100000000000\n    Total Stakes:\n        3\n    Forum Post:\n        https://forum.tecommons.org/t/translate-to-spanish-the-onboarding-and-resources-guide-doc/51/3\n"
+	assert.Equal(t, expected2, actual2)
 }
 
 func TestGetOrganization(t *testing.T) {
@@ -70,7 +98,16 @@ func TestGetOrganization(t *testing.T) {
 	response := org.(TECGardens.GraphQLResponse)
 	actualApps := reflect.ValueOf(response.Data.Organization.Apps)
 
-	assert.Equal(t, 13, actualApps.Len())
+	expected := 13
+	assert.Equal(t, expected, actualApps.Len())
+
+	actual2, err := underTest.ParseTemplate("TECGardens/organization", response.Data.Organization)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expected2 := "The following apps are installed:\n\n\n - dandelion-voting\n\n - tollgate\n\n - marketplace-presale\n\n - marketplace-controller\n\n - vault\n\n - conviction-beta\n\n - marketplace-bancor-market-maker\n\n - \n\n - vault\n\n - \n\n - redemptions\n\n - token-manager\n\n - \n"
+	assert.Equal(t, expected2, actual2)
 }
 
 func helperGetDAO() (DAO, error) {

@@ -25,7 +25,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// start bot
-		// TODO: use channels to decouple dao instance from bot. bot.Run() should just run server/handlers
+		// TODO: use channels to decouple dao instance(s) from bot. bot.Run() should just run server/handlers here
 		bot.Run(cmd)
 
 	},

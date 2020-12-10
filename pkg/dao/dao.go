@@ -13,6 +13,7 @@ type DAO interface {
 	GetOrganization() (interface{}, error)       // struct with organization details. Values will be interpolated with related template as message downstream
 	GetProposal(uid string) (interface{}, error) // get details for a single proposal. Values will be interpolated with related template as message downstream
 	GetProposals(limit int) (interface{}, error) // details for all proposals.
+	ParseTemplate(templateName string, values interface{}) (string, error)
 }
 
 // NewDAO Factory method for getting a doa instance for a specific protocol. Eg protocol=aragon | TECGardens

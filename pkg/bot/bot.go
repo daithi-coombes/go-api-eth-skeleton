@@ -110,7 +110,11 @@ func do(domain string, action string, model string) string {
 				if err != nil {
 					return fmt.Sprintf("Error getting total proposals: %s\n", err)
 				}
-				return "We have " + total.String() + " proposals"
+				resp, err := dao.ParseTemplate("TECGardens/total", total)
+				if err != nil {
+					return fmt.Sprintf("Error parsing total proposals template: %s\n", err)
+				}
+				return resp
 			}
 			return "proposal this!"
 		default:

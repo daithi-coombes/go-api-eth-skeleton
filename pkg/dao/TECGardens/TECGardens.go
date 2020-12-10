@@ -8,6 +8,7 @@ import (
 	"math/big"
 	"net/http"
 
+	"github.com/daithi-coombes/go-api-eth-skeleton/pkg/utils"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -159,6 +160,22 @@ func (t TECGardens) GetProposals(limit int) (interface{}, error) {
 	}
 
 	return body.Data.Proposals, nil
+}
+
+// ParseTemplate Returns formated tempalte file for serving to social media channel
+func (t TECGardens) ParseTemplate(templateName string, values interface{}) (string, error) {
+
+	tmpl, err := utils.GetTemplate(templateName)
+	if err != nil {
+		return "", err
+	}
+
+	var res bytes.Buffer
+	if err = tmpl.Execute(&res, values); err != nil {
+		return "", err
+	}
+
+	return res.String(), nil
 }
 
 // doGraphQL Run http requests for thegraph.com GraphQL
